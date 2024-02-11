@@ -16,8 +16,9 @@ service NoteV1 {
 }
 
 enum RoleType {
-    user = 0;
-    admin = 1;
+    UNSPECIFIED = 0;
+    USER = 1;
+    ADMIN = 2;
 }
 
 message UserInfo {
