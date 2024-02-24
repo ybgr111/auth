@@ -5,7 +5,7 @@ install-golangci-lint:
 	GOBIN=$(LOCAL_BIN) go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.3
 
 lint:
-	GOBIN=$(LOCAL_BIN) golangci-lint run ./... --config .golangci.pipeline.yaml
+	$(LOCAL_BIN)/golangci-lint run ./... --config .golangci.pipeline.yaml
 
 ##proto; grpc
 install-deps:
@@ -28,3 +28,15 @@ generate-note-api:
 	--go-grpc_out=grpc/pkg/note_v1 --go-grpc_opt=paths=source_relative \
 	--plugin=protoc-gen-go-grpc=bin/protoc-gen-go-grpc \
 	grpc/api/note_v1/note.proto
+
+##build
+build:
+	GOOS=linux GOARCH=amd64 go build -o service_linux grpc/cmd/grpc_server/main.go
+
+copy-to-server:
+	scp service_linux root@185.91.52.223:
+
+docker-build-and-push:
+	docker buildx build --no-cache --platform linux/amd64 -t cr.selcloud.ru/ybgr111/test-server:v0.0.1 .
+	docker login -u token -p CRgAAAAAmIxM5SY6qVc7pMYCMUQDKkRmX0KBpU3A cr.selcloud.ru/ybgr111
+	docker push cr.selcloud.ru/ybgr111/test-server:v0.0.1
