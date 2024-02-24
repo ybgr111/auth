@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, pipeline_tests]
   pull_request:
-    branches: [main, master]
+    branches: [main, master, pipeline_tests]
 
 env:
   REGISTRY: "cr.selcloud.ru/ybgr111"
