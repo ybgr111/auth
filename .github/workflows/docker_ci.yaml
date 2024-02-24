@@ -8,8 +8,8 @@ on:
 
 env:
   REGISTRY: "cr.selcloud.ru/ybgr111"
-  IMAGE_NAME: "crud-server"
-  CONTAINER_NAME: "crud-server-container"
+  IMAGE_NAME: "auth"
+  CONTAINER_NAME: "auth-container"
 
 jobs:
   image-build-and-push:
