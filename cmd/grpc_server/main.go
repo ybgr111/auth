@@ -23,6 +23,18 @@ import (
 
 var configPath string
 
+const (
+	authTable             = "auth"
+	idColumn              = "id"
+	emailColumn           = "email"
+	nameColumn            = "name"
+	roleColumn            = "role"
+	passwordColumn        = "password"
+	passwordConfirmColumn = "password_confirm"
+	createdAtColumn       = "created_at"
+	updatedAtColumn       = "updated_at"
+)
+
 func init() {
 	flag.StringVar(&configPath, "config-path", ".env", "path to config file")
 }
@@ -33,9 +45,9 @@ type server struct {
 }
 
 func (s *server) Create(ctx context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
-	builderInsert := sq.Insert("auth").
+	builderInsert := sq.Insert(authTable).
 		PlaceholderFormat(sq.Dollar).
-		Columns("email", "name", "role", "password", "password_confirm").
+		Columns(emailColumn, nameColumn, roleColumn, passwordColumn, passwordConfirmColumn).
 		Values(req.Info.Email, req.Info.Name, req.Info.Role, req.Passwd.Password, req.Passwd.PasswordConfirm).
 		Suffix("RETURNING id")
 
@@ -59,8 +71,8 @@ func (s *server) Create(ctx context.Context, req *desc.CreateRequest) (*desc.Cre
 }
 
 func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetResponse, error) {
-	builderSelect := sq.Select("id", "name", "email", "role", "created_at", "updated_at").
-		From("auth").
+	builderSelect := sq.Select(idColumn, nameColumn, emailColumn, roleColumn, createdAtColumn, updatedAtColumn).
+		From(authTable).
 		PlaceholderFormat(sq.Dollar).
 		OrderBy("id ASC").
 		Where(sq.Eq{"id": req.Id})
@@ -99,12 +111,12 @@ func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetRespon
 }
 
 func (s *server) Update(ctx context.Context, req *desc.UpdateRequest) (*empty.Empty, error) {
-	builderUpdate := sq.Update("auth").
+	builderUpdate := sq.Update(authTable).
 		PlaceholderFormat(sq.Dollar).
-		Set("name", req.Info.Name.Value).
-		Set("email", req.Info.Email.Value).
-		Set("role", req.Info.Role).
-		Set("updated_at", time.Now()).
+		Set(nameColumn, req.Info.Name.Value).
+		Set(emailColumn, req.Info.Email.Value).
+		Set(roleColumn, req.Info.Role).
+		Set(updatedAtColumn, time.Now()).
 		Where(sq.Eq{"id": req.Id})
 
 	query, args, err := builderUpdate.ToSql()
@@ -118,7 +130,6 @@ func (s *server) Update(ctx context.Context, req *desc.UpdateRequest) (*empty.Em
 	}
 
 	if res.RowsAffected() == 0 {
-		log.Printf("sdsd")
 		return nil, errors.WithMessage(errors.New("failed to update user"), "user not found")
 	}
 
@@ -129,7 +140,7 @@ func (s *server) Update(ctx context.Context, req *desc.UpdateRequest) (*empty.Em
 }
 
 func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*empty.Empty, error) {
-	builderUpdate := sq.Delete("auth").
+	builderUpdate := sq.Delete(authTable).
 		PlaceholderFormat(sq.Dollar).
 		Where(sq.Eq{"id": req.Id})
 
@@ -144,7 +155,6 @@ func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*empty.Em
 	}
 
 	if res.RowsAffected() == 0 {
-		log.Printf("sdsd")
 		return nil, errors.WithMessage(errors.New("failed to delete user"), "user not found")
 	}
 
