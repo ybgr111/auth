@@ -4,7 +4,7 @@ COPY . /github.com/ybgr111/auth/source/
 WORKDIR /github.com/ybgr111/auth/source/
 
 RUN go mod download
-RUN go build -o ./bin/crud_server grpc/cmd/grpc_server/main.go
+RUN go build -o ./bin/crud_server cmd/grpc_server/main.go
 
 FROM alpine:latest
 

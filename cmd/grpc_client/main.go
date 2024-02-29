@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 
-	desc "github.com/ybgr111/auth/grpc/pkg/note_v1"
+	desc "github.com/ybgr111/auth/pkg/note_v1"
 )
 
 const (
