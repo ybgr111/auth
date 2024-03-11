@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	sq "github.com/Masterminds/squirrel"
@@ -39,7 +40,7 @@ func (r *repo) Create(ctx context.Context, user *userModel.User) (int64, error) 
 		PlaceholderFormat(sq.Dollar).
 		Columns(emailColumn, nameColumn, roleColumn, passwordColumn, passwordConfirmColumn).
 		Values(user.Info.Email, user.Info.Name, user.Info.Role, user.Passwd.Password, user.Passwd.PasswordConfirm).
-		Suffix("RETURNING id")
+		Suffix(fmt.Sprintf("RETURNING %s", idColumn))
 
 	query, args, err := builderInsert.ToSql()
 	if err != nil {
@@ -64,8 +65,8 @@ func (r *repo) Get(ctx context.Context, id int64) (*model.UserPublic, error) {
 	builderSelect := sq.Select(idColumn, nameColumn, emailColumn, roleColumn, createdAtColumn, updatedAtColumn).
 		From(authTable).
 		PlaceholderFormat(sq.Dollar).
-		OrderBy("id ASC").
-		Where(sq.Eq{"id": id})
+		OrderBy(fmt.Sprintf("%s ASC", idColumn)).
+		Where(sq.Eq{idColumn: id})
 
 	query, args, err := builderSelect.ToSql()
 	if err != nil {
@@ -93,7 +94,7 @@ func (r *repo) Update(ctx context.Context, req *userModel.User) error {
 		Set(emailColumn, req.Info.Email).
 		Set(roleColumn, req.Info.Role).
 		Set(updatedAtColumn, time.Now()).
-		Where(sq.Eq{"id": req.ID})
+		Where(sq.Eq{idColumn: req.ID})
 
 	query, args, err := builderUpdate.ToSql()
 	if err != nil {
@@ -120,7 +121,7 @@ func (r *repo) Update(ctx context.Context, req *userModel.User) error {
 func (r *repo) Delete(ctx context.Context, id int64) error {
 	builderUpdate := sq.Delete(authTable).
 		PlaceholderFormat(sq.Dollar).
-		Where(sq.Eq{"id": id})
+		Where(sq.Eq{idColumn: id})
 
 	query, args, err := builderUpdate.ToSql()
 	if err != nil {

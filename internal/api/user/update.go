@@ -2,7 +2,6 @@ package user
 
 import (
 	"context"
-	"log"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/ybgr111/auth/internal/converter"
@@ -17,8 +16,6 @@ func (i *Server) Update(ctx context.Context, req *desc.UpdateRequest) (*empty.Em
 	if err != nil {
 		return nil, err
 	}
-
-	log.Printf("user with id: %d updated\n", req.GetId())
 
 	return &empty.Empty{}, nil
 }

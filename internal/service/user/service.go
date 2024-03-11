@@ -13,12 +13,12 @@ type serv struct {
 }
 
 func NewService(
-	authRepository repository.UserRepository,
+	userRepository repository.UserRepository,
 	logRepository repository.LogRepository,
 	txManager db.TxManager,
 ) service.UserService {
 	return &serv{
-		userRepository: authRepository,
+		userRepository: userRepository,
 		logRepository:  logRepository,
 		txManager:      txManager,
 	}

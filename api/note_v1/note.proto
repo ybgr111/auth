@@ -32,7 +32,6 @@ message UserPassword {
     string password_confirm = 2;
 }
 
-
 message User {
     int64 id = 1;
     UserInfo info = 2;
