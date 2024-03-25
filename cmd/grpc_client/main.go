@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/fatih/color"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 
+	"github.com/fatih/color"
 	desc "github.com/ybgr111/auth/pkg/note_v1"
 )
 

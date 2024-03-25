@@ -2,7 +2,7 @@ include local.env
 
 LOCAL_BIN:=$(CURDIR)/bin
 LOCAL_MIGRATION_DIR=$(MIGRATION_DIR)
-LOCAL_MIGRATION_DSN="host=localhost port=$(POSTGRES_PORT) dbname=$(POSTGRES_DB_NAME) user=$(POSTGRES_USER) password=$(POSTGRES_PASSWORD) sslmode=disable"
+LOCAL_MIGRATION_DSN=$(MIGRATION_DSN)
 
 ##linter
 install-golangci-lint:
