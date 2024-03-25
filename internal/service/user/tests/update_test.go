@@ -11,14 +11,15 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/ybgr111/auth/internal/client/db"
-	"github.com/ybgr111/auth/internal/client/db/pg"
-	"github.com/ybgr111/auth/internal/client/db/transaction"
 	"github.com/ybgr111/auth/internal/model"
 	"github.com/ybgr111/auth/internal/service/mocks"
 	"github.com/ybgr111/auth/internal/service/user"
 
-	dbMocks "github.com/ybgr111/auth/internal/client/db/mocks"
+	"github.com/ybgr111/platform_common/pkg/db"
+	dbMocks "github.com/ybgr111/platform_common/pkg/db/mocks"
+	"github.com/ybgr111/platform_common/pkg/db/pg"
+	"github.com/ybgr111/platform_common/pkg/db/transaction"
+
 	repoMocks "github.com/ybgr111/auth/internal/repository/mocks"
 
 	converterLogRepo "github.com/ybgr111/auth/internal/repository/log/converter"

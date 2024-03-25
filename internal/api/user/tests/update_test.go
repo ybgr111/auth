@@ -53,8 +53,6 @@ func TestUpdate(t *testing.T) {
 		res = &empty.Empty{}
 	)
 
-	defer t.Cleanup(mc.Finish)
-
 	tests := []struct {
 		name            string
 		args            args

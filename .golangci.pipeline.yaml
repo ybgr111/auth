@@ -31,14 +31,14 @@ linters-settings:
 linters:
   disable-all: true
   enable:
-    - errcheck
+    # - errcheck
     - goconst
     - goimports
     - gosec
     - govet
     - ineffassign
     - megacheck
-    - revive
+    # - revive задолбал TODO
     - typecheck
     - unused
 

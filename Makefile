@@ -56,3 +56,19 @@ local-migration-up:
 
 local-migration-down:
 	${LOCAL_BIN}/goose -dir ${LOCAL_MIGRATION_DIR} postgres ${LOCAL_MIGRATION_DSN} down -v
+
+##tests
+.PHONY: test
+test:
+	go clean -testcache
+	go test ./... -covermode count -coverpkg=github.com/ybgr111/auth/internal/service/...,github.com/ybgr111/auth/internal/api/... -count 5
+
+.PHONY: test-coverage
+test-coverage:
+	go clean -testcache
+	go test ./... -coverprofile=coverage.tmp.out -covermode count -coverpkg=github.com/ybgr111/auth/internal/service/...,github.com/ybgr111/auth/internal/api/... -count 5
+	grep -v 'mocks\|config' coverage.tmp.out  > coverage.out
+	rm coverage.tmp.out
+	go tool cover -html=coverage.out;
+	go tool cover -func=./coverage.out | grep "total";
+	grep -sqFx "/coverage.out" .gitignore || echo "/coverage.out" >> .gitignore

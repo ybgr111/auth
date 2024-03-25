@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// UserPublic публичные данные пользователя.
 type UserPublic struct {
 	ID        int64
 	Info      UserInfo
@@ -12,6 +13,7 @@ type UserPublic struct {
 	UpdatedAt sql.NullTime
 }
 
+// UserInfo инфо данные пользователя.
 type UserInfo struct {
 	Name  string
 	Email string
@@ -26,6 +28,7 @@ const (
 	ADMIN
 )
 
+// UserPassword данные о пароле пользователя.
 type UserPassword struct {
 	Password        string
 	PasswordConfirm string

@@ -6,7 +6,6 @@ require (
 	github.com/Masterminds/squirrel v1.5.4
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
 	github.com/fatih/color v1.16.0
-	github.com/georgysavva/scany v1.2.1
 	github.com/gojuno/minimock/v3 v3.3.6
 	github.com/golang/protobuf v1.5.3
 	github.com/jackc/pgconn v1.14.3
@@ -21,6 +20,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/georgysavva/scany v1.2.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect

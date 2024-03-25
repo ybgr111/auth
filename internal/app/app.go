@@ -16,6 +16,7 @@ import (
 	desc "github.com/ybgr111/auth/pkg/note_v1"
 )
 
+// App структура приложения.
 type App struct {
 	serviceProvider *serviceProvider
 	grpcServer      *grpc.Server
@@ -27,6 +28,7 @@ func init() {
 	flag.StringVar(&configPath, "config-path", ".env", "path to config file")
 }
 
+// NewApp создание нового приложения.
 func NewApp(ctx context.Context) (*App, error) {
 	a := &App{}
 
@@ -38,6 +40,7 @@ func NewApp(ctx context.Context) (*App, error) {
 	return a, nil
 }
 
+// Run запуск приложения.
 func (a *App) Run() error {
 	defer func() {
 		closer.CloseAll()
