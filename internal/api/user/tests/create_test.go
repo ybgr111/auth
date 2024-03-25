@@ -8,6 +8,7 @@ import (
 	"github.com/brianvoe/gofakeit"
 	"github.com/gojuno/minimock/v3"
 	"github.com/stretchr/testify/require"
+
 	"github.com/ybgr111/auth/internal/api/user"
 	"github.com/ybgr111/auth/internal/model"
 	"github.com/ybgr111/auth/internal/service"

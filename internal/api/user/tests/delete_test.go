@@ -9,6 +9,7 @@ import (
 	"github.com/gojuno/minimock/v3"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/stretchr/testify/require"
+
 	"github.com/ybgr111/auth/internal/api/user"
 	"github.com/ybgr111/auth/internal/service"
 	serviceMocks "github.com/ybgr111/auth/internal/service/mocks"
