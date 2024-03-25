@@ -10,7 +10,8 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/ybgr111/auth/internal/closer"
+	"github.com/ybgr111/platform_common/pkg/closer"
+
 	"github.com/ybgr111/auth/internal/config"
 	desc "github.com/ybgr111/auth/pkg/note_v1"
 )
