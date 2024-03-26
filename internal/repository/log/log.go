@@ -6,9 +6,11 @@ import (
 
 	sq "github.com/Masterminds/squirrel"
 	"github.com/pkg/errors"
-	"github.com/ybgr111/auth/internal/client/db"
+
 	"github.com/ybgr111/auth/internal/repository"
 	logModel "github.com/ybgr111/auth/internal/repository/log/model"
+
+	"github.com/ybgr111/platform_common/pkg/db"
 )
 
 const (

@@ -10,11 +10,13 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/ybgr111/auth/internal/closer"
+	"github.com/ybgr111/platform_common/pkg/closer"
+
 	"github.com/ybgr111/auth/internal/config"
 	desc "github.com/ybgr111/auth/pkg/note_v1"
 )
 
+// App структура приложения.
 type App struct {
 	serviceProvider *serviceProvider
 	grpcServer      *grpc.Server
@@ -26,6 +28,7 @@ func init() {
 	flag.StringVar(&configPath, "config-path", ".env", "path to config file")
 }
 
+// NewApp создание нового приложения.
 func NewApp(ctx context.Context) (*App, error) {
 	a := &App{}
 
@@ -37,6 +40,7 @@ func NewApp(ctx context.Context) (*App, error) {
 	return a, nil
 }
 
+// Run запуск приложения.
 func (a *App) Run() error {
 	defer func() {
 		closer.CloseAll()

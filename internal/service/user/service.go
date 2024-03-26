@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/ybgr111/auth/internal/client/db"
 	"github.com/ybgr111/auth/internal/repository"
 	"github.com/ybgr111/auth/internal/service"
+	"github.com/ybgr111/platform_common/pkg/db"
 )
 
 type serv struct {

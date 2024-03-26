@@ -5,17 +5,19 @@ import (
 	"log"
 
 	"github.com/ybgr111/auth/internal/api/user"
-	"github.com/ybgr111/auth/internal/client/db"
-	"github.com/ybgr111/auth/internal/client/db/pg"
-	"github.com/ybgr111/auth/internal/client/db/transaction"
-	"github.com/ybgr111/auth/internal/closer"
 	"github.com/ybgr111/auth/internal/config"
 	"github.com/ybgr111/auth/internal/config/env"
 	"github.com/ybgr111/auth/internal/repository"
+	"github.com/ybgr111/auth/internal/service"
+
 	logRepository "github.com/ybgr111/auth/internal/repository/log"
 	userRepository "github.com/ybgr111/auth/internal/repository/user"
-	"github.com/ybgr111/auth/internal/service"
 	userService "github.com/ybgr111/auth/internal/service/user"
+
+	"github.com/ybgr111/platform_common/pkg/closer"
+	"github.com/ybgr111/platform_common/pkg/db"
+	"github.com/ybgr111/platform_common/pkg/db/pg"
+	"github.com/ybgr111/platform_common/pkg/db/transaction"
 )
 
 type serviceProvider struct {

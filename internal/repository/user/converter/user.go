@@ -5,6 +5,7 @@ import (
 	modelRepo "github.com/ybgr111/auth/internal/repository/user/model"
 )
 
+// ToUserInfoFromRepo конвертер репо - сервис по возврату информации о пользователе.
 func ToUserFromRepo(user *modelRepo.User) *model.UserPublic {
 	return &model.UserPublic{
 		ID:        user.ID,
@@ -14,6 +15,8 @@ func ToUserFromRepo(user *modelRepo.User) *model.UserPublic {
 	}
 }
 
+// ToUserInfoFromRepo конвертер репо - сервис по возврату личной информации о пользователе.
+
 func ToUserInfoFromRepo(info *modelRepo.UserInfo) model.UserInfo {
 	return model.UserInfo{
 		Name:  info.Name,
@@ -22,6 +25,7 @@ func ToUserInfoFromRepo(info *modelRepo.UserInfo) model.UserInfo {
 	}
 }
 
+// ToUserUpdate конвертер сервис - репо по созданию пользователя.
 func ToUserCreate(
 	userInfo *model.UserInfo,
 	userPassword *model.UserPassword,
@@ -36,6 +40,7 @@ func ToUserCreate(
 	}
 }
 
+// ToUserUpdate конвертер сервис - репо по обновлению пользователя.
 func ToUserUpdate(
 	id int64,
 	userInfo *model.UserInfo,

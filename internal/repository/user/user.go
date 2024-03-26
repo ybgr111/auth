@@ -8,11 +8,11 @@ import (
 	sq "github.com/Masterminds/squirrel"
 	"github.com/pkg/errors"
 
-	"github.com/ybgr111/auth/internal/client/db"
 	"github.com/ybgr111/auth/internal/model"
 	"github.com/ybgr111/auth/internal/repository"
 	"github.com/ybgr111/auth/internal/repository/user/converter"
 	userModel "github.com/ybgr111/auth/internal/repository/user/model"
+	"github.com/ybgr111/platform_common/pkg/db"
 )
 
 const (
@@ -31,6 +31,7 @@ type repo struct {
 	db db.Client
 }
 
+// NewRepository возвращает экземпляр репозитория пользователя.
 func NewRepository(db db.Client) repository.UserRepository {
 	return &repo{db: db}
 }
